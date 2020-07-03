@@ -23,6 +23,15 @@ class Matrix {
     return matrix;
   }
 
+  static MatrixToArray(obj) {
+    let array = [];
+
+    obj.map((elm, i, j) => {
+      return array.push(elm);
+    });
+    return array;
+  }
+
   print() {
     console.table(this.data);
   }
@@ -35,7 +44,8 @@ class Matrix {
 
   static map(A, func) {
     let matrix = new Matrix(A.lin, A.col);
-    matrix.data = matrix.data.map((arr, i) => {
+
+    matrix.data = A.data.map((arr, i) => {
       return arr.map((num, j) => {
         return func(num, i, j);
       });
@@ -52,11 +62,37 @@ class Matrix {
     return this;
   }
 
+  static transpose(A) {
+    var matrix = new Matrix(A.col, A.lin);
+    matrix.map((num, i, j) => {
+      return A.data[j][i];
+    });
+    return matrix;''
+  }
+
+  static hadamard(A, B) {
+    var matrix = new Matrix(A.lin, A.col);
+
+    matrix.map((num, i, j) => {
+      return A.data[i][j] * B.data[i][j];
+    });
+    return matrix;
+  }
+
   static add(A, B) {
     var matrix = new Matrix(A.lin, A.col);
 
     matrix.map((num, i, j) => {
       return A.data[i][j] + B.data[i][j];
+    });
+    return matrix;
+  }
+
+  static sub(A, B) {
+    var matrix = new Matrix(A.lin, A.col);
+
+    matrix.map((num, i, j) => {
+      return A.data[i][j] - B.data[i][j];
     });
     return matrix;
   }
@@ -72,6 +108,15 @@ class Matrix {
         sum += elem1 * elem2;
       }
       return sum;
+    });
+    return matrix;
+  }
+
+  static escalar_mult(A, escalar) {
+    var matrix = new Matrix(A.lin, A.col);
+
+    matrix.map((num, i, j) => {
+      return A.data[i][j] * escalar;
     });
     return matrix;
   }
