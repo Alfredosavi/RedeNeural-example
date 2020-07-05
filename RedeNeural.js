@@ -1,8 +1,10 @@
 function sigmoid(x) {
+  // FUNCTION
   return 1 / (1 + Math.exp(-x));
 }
 
 function dsigmoid(x) {
+  // DERIVATIVE
   return x * (1 - x);
 }
 

@@ -67,7 +67,7 @@ class Matrix {
     matrix.map((num, i, j) => {
       return A.data[j][i];
     });
-    return matrix;''
+    return matrix;
   }
 
   static hadamard(A, B) {
